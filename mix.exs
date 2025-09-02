@@ -4,6 +4,7 @@ defmodule AshParental.MixProject do
   def project do
     [
       app: :ash_parental,
+      name: "Ash Parental",
       version: "0.1.1",
       elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,

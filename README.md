@@ -45,14 +45,29 @@ It comes with 2 configurations:
 2. `destroy_with_children?` to indicate whether or not parents should be destroyed with their children
 
 ```elixir
-defmodule MyApp.Comment do
-    use Ash.Resource, extensions: [AshParental]
+  defmodule MyApp.Comment do
+    use Ash.Resource,
+      domain: MyApp.Domain,
+      data_layer: Ash.DataLayer.Ets,
+      extensions: [AshParental]
 
-    # Other codes in this resource..
-    ash_parental do
-        children_relationship_name :subcategories 
-        destroy_with_children? true # default is false
+    ets do
+      table :comments
     end
-end
 
+    ash_parental do
+      children_relationship_name :replies # Default: children 
+      destroy_with_children? true # Default: false
+    end
+
+    actions do
+      defaults [:create, :read, :update, :destroy] 
+    end
+
+    attributes do
+      uuid_primary_key :id
+      attribute :content, :string, allow_nil?: false
+      timestamps()
+    end
+  end
 ```
