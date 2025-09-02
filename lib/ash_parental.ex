@@ -34,4 +34,33 @@ defmodule AshParental do
   }
 
   use Spark.Dsl.Extension, transformers: @transformers, sections: [@section]
+
+  @spec get_children_relationship_name(atom() | map()) :: atom()
+  def get_children_relationship_name(dsl_state) do
+    dsl_state
+    |> AshParental.Info.ash_parental_children_relationship_name!()
+  end
+
+  @spec get_current_resource_name(map()) :: atom()
+  def get_current_resource_name(dsl_state) do
+    Spark.Dsl.Transformer.get_persisted(dsl_state, :module)
+  end
+
+  @spec get_primary_key_name(map()) :: atom()
+  def get_primary_key_name(dsl_state) do
+    dsl_state
+    |> Ash.Resource.Info.primary_key()
+    |> Enum.map(&Ash.Resource.Info.attribute(dsl_state, &1))
+    |> List.first()
+    |> Map.get(:name)
+  end
+
+  @spec get_primary_key_type(map()) :: atom()
+  def get_primary_key_type(dsl_state) do
+    dsl_state
+    |> Ash.Resource.Info.primary_key()
+    |> Enum.map(&Ash.Resource.Info.attribute(dsl_state, &1))
+    |> List.first()
+    |> Map.get(:type)
+  end
 end

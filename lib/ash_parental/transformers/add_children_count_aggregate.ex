@@ -13,13 +13,7 @@ defmodule AshParental.Transformers.AddChildrenCountAggregate do
       dsl_state,
       :count_of_children,
       :count,
-      # <-- Use the configured children relationship name
-      [get_children_relationship_name(dsl_state)]
+      [AshParental.get_children_relationship_name(dsl_state)]
     )
-  end
-
-  defp get_children_relationship_name(dsl_state) do
-    dsl_state
-    |> AshParental.Info.ash_parental_children_relationship_name!()
   end
 end
