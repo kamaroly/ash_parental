@@ -1,7 +1,7 @@
 
 # Getting Started With Ash Parental
 
-![Alt text](logos/ash-parental-logo.png)
+![Alt text](https://raw.githubusercontent.com/kamaroly/ash_parental/refs/heads/master/logos/ash-parental-logo.png)
 
 Ash Parental is an Ash Framework extension that brings STI(Single Table Inheritance) capability to your resource. 
 
