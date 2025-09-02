@@ -3,7 +3,7 @@ Ash Parental is an Ash Framework extension that brings STI(Single Table Inherita
 
 If you want to learn how to build Ash extensions like this you can read more in the Ash Framework for Phoenix Developers serie on medium https://medium.com/p/62b58b426246.
 
-## What is single table inheritance (STI)?
+## What is a single table inheritance (STI)?
 
 It's a fancy name for a simple concept: Extending a resource (usually to add specific behavior), but referencing the same table.
 
@@ -21,7 +21,7 @@ end
 
 Then add it to your resource like below
 
-```ex
+```elixir
 defmodule MyApp.Comment do
     use Ash.Resource, extensions: [AshParental]
     ....
@@ -37,16 +37,22 @@ This extension adds:
 3. has many `children` relationship
 4. `children_count` aggregates
 
-## Extension Configurations within Resource
+## Configurations
 
 It comes with 2 configurations:
 
 1. `children_relationship_name` to rename children relationship name
 2. `destroy_with_children?` to indicate whether or not parents should be destroyed with their children
 
-```ex
-ash_parental do
-    children_relationship_name :subcategories 
-     destroy_with_children? true # default is false
+```elixir
+defmodule MyApp.Comment do
+    use Ash.Resource, extensions: [AshParental]
+
+    # Other codes in this resource..
+    ash_parental do
+        children_relationship_name :subcategories 
+        destroy_with_children? true # default is false
+    end
 end
+
 ```
