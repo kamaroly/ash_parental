@@ -31,7 +31,6 @@ defmodule AshParental.MixProject do
   defp docs do
     [
       main: "readme",
-      logo: "logos/ash-parental-logo.png",
       extras: [
         {"README.md", title: "Home"}
       ]
