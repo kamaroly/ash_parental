@@ -49,12 +49,14 @@ It comes with 2 configurations:
     use Ash.Resource,
       domain: MyApp.Domain,
       data_layer: Ash.DataLayer.Ets,
+      # <--- Add AshParental to your resource
       extensions: [AshParental]
 
     ets do
       table :comments
     end
 
+    # <--- Configure Ash Parental
     ash_parental do
       children_relationship_name :replies # Default: children 
       destroy_with_children? true # Default: false
